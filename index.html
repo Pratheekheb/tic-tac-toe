@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe Multiplayer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎮 Multiplayer Tic Tac Toe</h1>
+
+  <div id="setup">
+    <input id="nickname" placeholder="Enter nickname">
+    <input id="matchId" placeholder="Enter Match ID (e.g., 1)">
+    <input id="playerId" placeholder="Enter Player ID (1 or 2)">
+    <button id="connectBtn">Connect</button>
+  </div>
+
+  <div id="status">Not connected</div>
+
+  <div id="board" class="board"></div>
+
+  <button id="playAgainBtn" style="display:none;">🔄 Play Again</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
