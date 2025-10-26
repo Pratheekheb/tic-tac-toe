@@ -10,15 +10,13 @@ import schemas
 app = FastAPI(title="Multiplayer Tic Tac Toe Backend")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 templates = Jinja2Templates(directory=BASE_DIR)
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
 
 def get_db():
     db = get_session()
