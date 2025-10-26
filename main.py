@@ -1,21 +1,25 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends, HTTPException
-from sqlalchemy.orm import Session
-from models import Player, Match, get_session, MatchStatus
-import schemas
+import os
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi import Request
+from sqlalchemy.orm import Session
+from models import Player, Match, get_session, MatchStatus
+import schemas
 
 app = FastAPI(title="Multiplayer Tic Tac Toe Backend")
-app.mount("/static", StaticFiles(directory="."), name="static")
 
-templates = Jinja2Templates(directory=".")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
+templates = Jinja2Templates(directory=BASE_DIR)
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
-# ✅ Database dependency
+
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 def get_db():
     db = get_session()
     try:
